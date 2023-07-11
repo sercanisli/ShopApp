@@ -1,0 +1,31 @@
+﻿@model ShopAppWebUI.Models.ProductListViewModel
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<table class="table table-responsive">
+    <tr>
+        <td><span><h4>Product Name</h4></span></td>
+        <td><span><h4>Unit Price</h4></span></td>
+	    <td><span><h4>Units In Stock</h4></span></td>
+	    <td><span><h4>Category Id</h4></span></td>
+
+    </tr>
+    @foreach (var product in Model.Products)
+    {
+	    <tr>
+		    <td>@product.ProductName</td>
+		    <td>@product.UnitPrice</td>
+		    <td>@product.UnitsInStock</td>
+		    <td>@product.CategoryId</td>
+	    </tr>
+    }
+</table>
+<!--BURADA parametrelerimizi vereceğiz tag helper ile-->
+<product-list-pager
+	current-category="@Model.CurrentCategory"
+	current-page="@Model.CurrentPage"
+	page-count="@Model.PageCount"
+    page-size="@Model.PageSize"
+	></product-list-pager>
