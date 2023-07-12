@@ -9,8 +9,12 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ShopAppWebUI.Entities;
 using ShopAppWebUI.Middlewares;
+using ShopAppWebUI.Services;
 
 namespace ShopAppWebUI
 {
@@ -26,6 +30,15 @@ namespace ShopAppWebUI
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
 
+            services.AddSingleton<ICartService, CartManager>();
+            services.AddSingleton<ICartSessionService, CartSessionService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDbContext<CustomIdentityDbContext>(options => options.UseSqlServer("Server=DESKTOP-HNE46F7; Database=Northwind; Trusted_Connection=true"));
+            services.AddIdentity<CustomIdentityUser, CustomIdentityRole>().AddEntityFrameworkStores<CustomIdentityDbContext>().AddDefaultTokenProviders();
+			services.AddSession();
+            services.AddDistributedMemoryCache();
+
             services.AddMvc();
         }
 
@@ -38,6 +51,8 @@ namespace ShopAppWebUI
             }
             app.UseFileServer();
             app.UseNodeModules(env.ContentRootPath);
+            app.UseIdentity();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
         }
     }

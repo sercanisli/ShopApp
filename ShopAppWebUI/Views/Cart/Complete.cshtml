@@ -1,0 +1,43 @@
+﻿@model ShopAppWebUI.Models.ShippingDetailsViewModel
+
+@{
+	ViewBag.Title = "title";
+	Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Shipping Details</h2>
+<form asp-controller="Cart" asp-action="Complete"method="post"><!--ekleme olduğu için post-->
+	<div class="form-group">
+		<label asp-for="ShippingDetails.Name"></label><!--label da asp-for kullandık  hangi alana gideceğini belirtmek için-->
+		<input asp-for="ShippingDetails.Name" class="form-control" placeholder="First Name">
+		<span asp-validation-for="ShippingDetails.Name"></span> <!--Asp-validation-for da br hata olduğundan hata mesajını göstermek için-->
+	</div>
+	<div class="form-group">
+		<label asp-for="ShippingDetails.SurName"></label>
+		<input asp-for="ShippingDetails.SurName" class="form-control" placeholder="Last Name">
+		<span asp-validation-for="ShippingDetails.SurName"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="ShippingDetails.Address"></label>
+		<input asp-for="ShippingDetails.Address" class="form-control" placeholder="Address">
+		<span asp-validation-for="ShippingDetails.Address"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="ShippingDetails.City"></label>
+		<input asp-for="ShippingDetails.City" class="form-control" placeholder="City">
+		<span asp-validation-for="ShippingDetails.City"></span>
+	</div>
+    
+	<div class="form-group">
+		<label asp-for="ShippingDetails.Email"></label>
+		<input asp-for="ShippingDetails.Email" class="form-control" placeholder="City">
+		<span asp-validation-for="ShippingDetails.Email"></span>
+	</div>
+    
+	<div class="form-group">
+		<label asp-for="ShippingDetails.Age"></label>
+		<input asp-for="ShippingDetails.Age" class="form-control" placeholder="City">
+		<span asp-validation-for="ShippingDetails.Age"></span>
+	</div>
+	<input type="submit" value="Complete Shopping" class="btn btn-xs btn-success"/>
+</form>

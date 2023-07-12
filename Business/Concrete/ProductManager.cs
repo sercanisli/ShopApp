@@ -19,6 +19,11 @@ namespace Business.Concrete
             _productDal.Add(product);
         }
 
+        public Product GetById(int productId)
+        {
+	        return _productDal.Get(p => p.ProductId == productId);
+        }
+
         public void Delete(int productId)
         {
             _productDal.Delete(new Product { ProductId = productId });

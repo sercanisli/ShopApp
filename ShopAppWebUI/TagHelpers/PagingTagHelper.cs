@@ -25,7 +25,8 @@ namespace ShopAppWebUI.TagHelpers
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("<ul class='pagination'>");
 
-            for (int i = 0; i < PageCount; i++) 
+            for (int i = 0; i < PageCount; i++)
+
             {
                 stringBuilder.AppendFormat("<li class='{0}'>",i==CurrentPage?"active":"");
                 stringBuilder.AppendFormat("<a href='/product/index?page={0}&category={1}' class='page-link'> {2} </a>", i,

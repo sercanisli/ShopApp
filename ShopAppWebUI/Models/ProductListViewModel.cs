@@ -13,5 +13,5 @@ namespace ShopAppWebUI.Models
         public int PageSize { get; internal set; }
         public int CurrentCategory { get; internal set; }
         public int CurrentPage { get; internal set; }
-    }
+	}
 }
